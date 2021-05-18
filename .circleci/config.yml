@@ -37,6 +37,9 @@ jobs:
           name: Checkout submodule
           command: git submodule update --init --remote -- edagames-server
       - run:
+          name: Setup ssh identity
+          command: git config user.email test@test.com && git config user.name Test
+      - run:
           name: Commit submodule update
           command: git commit -am 'Update EDAGames Server'
       - run:
