@@ -35,7 +35,7 @@ jobs:
       - checkout
       - run:
           name: Checkout submodule
-          command: git submodule update --remote -- edagames-server
+          command: git submodule update --init --remote -- edagames-server
       - run:
           name: Commit submodule update
           command: git commit -am 'Update EDAGames Server'
