@@ -1,0 +1,4 @@
+[submodule ".circleci/edagames-server"]
+	path = .circleci/edagames-server
+	url = https://github.com/evbeda/edagames-server
+	branch = main

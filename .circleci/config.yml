@@ -1,0 +1,56 @@
+version: 2.1
+
+parameters:
+  trigger-commit-jobs:
+    default: true
+    type: boolean
+  update_submodule_server:
+    default: false
+    type: boolean
+  update_submodule_django:
+    default: false
+    type: boolean
+  update_submodule_quoridor:
+    default: false
+    type: boolean
+
+jobs:
+  build-and-test:
+    docker:
+      - image: circleci/python:3.8
+    steps:
+      - checkout
+      - run:
+          name: Run Flake8 checks
+          command: flake8
+  update_server:
+    docker:
+      - image: alpine/git
+    steps:
+      - run:
+          name: Echo message
+          command: echo 'Update submodule server'
+      - checkout
+      - run:
+          name: Checkout submodule
+          command: git submodule update --remote -- edagames-server
+      - run:
+          name: Commit submodule update
+          command: git commit -am 'Update EDAGames Server'
+      - run:
+          name: Push submodule update
+          command: git push origin main
+
+workflows:
+  update_submodule_server:
+    when: << pipeline.parameters.update_submodule_server >>
+    jobs:
+      - update_server:
+          filters:
+            branches:
+              only: main
+  main:
+    when: << pipeline.parameters.trigger-commit-jobs >>
+    jobs:
+      - build-and-test
+
