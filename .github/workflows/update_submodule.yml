@@ -14,7 +14,6 @@ on:
 jobs:
   update_server:
     runs-on: ubuntu-latest
-    if: $GITHUB_EVENT_NAME == update_server
     steps:
     - name: Temporarily disable "include administrators" branch protection
       uses: benjefferies/branch-protection-bot@master
@@ -34,7 +33,6 @@ jobs:
 
   update_django:
     runs-on: ubuntu-latest
-    if: GITHUB_EVENT_NAME == update_django
     steps:
     - name: Temporarily disable "include administrators" branch protection
       uses: benjefferies/branch-protection-bot@master
@@ -54,7 +52,6 @@ jobs:
 
   update_quoridor:
     runs-on: ubuntu-latest
-    if: GITHUB_EVENT_NAME == update_quoridor
     steps:
     - name: Temporarily disable "include administrators" branch protection
       uses: benjefferies/branch-protection-bot@master
