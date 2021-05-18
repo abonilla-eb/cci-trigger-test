@@ -20,6 +20,8 @@ jobs:
       - image: circleci/python:3.8
     steps:
       - checkout
+      - run: pip install -r requirements.txt
+      - run: pip install -r requirements-dev.txt
       - run:
           name: Run Flake8 checks
           command: flake8
