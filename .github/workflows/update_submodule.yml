@@ -24,7 +24,7 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v2
     - name: Deploy
-      working-directory: ${{ $GITHUB_WORKSPACE }}
+      working-directory: ${{ env.GITHUB_WORKSPACE }}
       run: |
         git submodule update --init --remote -- edagames-server
         git config user.email eda5@eventbrite.com
