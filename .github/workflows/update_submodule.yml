@@ -15,12 +15,6 @@ jobs:
   update_server:
     runs-on: ubuntu-latest
     steps:
-    - name: Temporarily disable "include administrators" branch protection
-      uses: benjefferies/branch-protection-bot@master
-      if: always()
-      with:
-        access-token: ${{ secrets.ACCESS_TOKEN }}
-        branch: main
     - name: Checkout
       uses: actions/checkout@v2
     - name: Deploy
@@ -31,47 +25,3 @@ jobs:
         git config user.name EDA5
         git commit -am "Update EDAGames Server"
         git push origin main
-    - name: Enable "include administrators" branch protection
-      uses: benjefferies/branch-protection-bot@master
-      if: always()
-      with:
-        access-token: ${{ secrets.ACCESS_TOKEN }}
-        branch: main
-
-  update_django:
-    runs-on: ubuntu-latest
-    steps:
-    - name: Temporarily disable "include administrators" branch protection
-      uses: benjefferies/branch-protection-bot@master
-      if: always()
-      with:
-        access-token: ${{ secrets.ACCESS_TOKEN }}
-        branch: main
-    - name: Deploy
-      run: |
-        git submodule update --init --remote -- edagames-django
-    - name: Enable "include administrators" branch protection
-      uses: benjefferies/branch-protection-bot@master
-      if: always()
-      with:
-        access-token: ${{ secrets.ACCESS_TOKEN }}
-        branch: main
-
-  update_quoridor:
-    runs-on: ubuntu-latest
-    steps:
-    - name: Temporarily disable "include administrators" branch protection
-      uses: benjefferies/branch-protection-bot@master
-      if: always()
-      with:
-        access-token: ${{ secrets.ACCESS_TOKEN }}
-        branch: main
-    - name: Deploy
-      run: |
-        git submodule update --init --remote -- edagames-quoridor
-    - name: Enable "include administrators" branch protection
-      uses: benjefferies/branch-protection-bot@master
-      if: always()
-      with:
-        access-token: ${{ secrets.ACCESS_TOKEN }}
-        branch: main
