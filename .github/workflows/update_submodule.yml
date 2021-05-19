@@ -21,9 +21,16 @@ jobs:
       with:
         access-token: ${{ secrets.ACCESS_TOKEN }}
         branch: main
+    - name: Checkout
+      uses: actions/checkout@v2
     - name: Deploy
+      working-directory: ${{ $GITHUB_WORKSPACE }}
       run: |
         git submodule update --init --remote -- edagames-server
+        git config user.email eda5@eventbrite.com
+        git config user.name EDA5
+        git commit -am "Update EDAGames Server"
+        git push origin main
     - name: Enable "include administrators" branch protection
       uses: benjefferies/branch-protection-bot@master
       if: always()
