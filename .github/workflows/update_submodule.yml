@@ -8,8 +8,6 @@ on:
 jobs:
   update_server:
     runs-on: ubuntu-latest
-    env:
-      GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
     steps:
     - name: Temporarily disable "include administrators" branch protection
       uses: benjefferies/branch-protection-bot@master
@@ -19,6 +17,8 @@ jobs:
         branch: main
     - name: Checkout
       uses: actions/checkout@v2
+      with:
+        token: ${{ secrets.ACCESS_TOKEN }}
     - name: Deploy
       working-directory: ${{ env.GITHUB_WORKSPACE }}
       run: |
