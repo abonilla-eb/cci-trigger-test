@@ -8,6 +8,8 @@ on:
 jobs:
   update_server:
     runs-on: ubuntu-latest
+    env:
+      GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
     steps:
     - name: Temporarily disable "include administrators" branch protection
       uses: benjefferies/branch-protection-bot@master
