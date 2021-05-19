@@ -24,13 +24,13 @@ jobs:
         git config user.email eda5@eventbrite.com
         git config user.name EDA5
     - name: Update server
-      if: ${{ github.event_name == "update_server" }}
+      if: github.event_name == 'update_server'
       working-directory: ${{ env.GITHUB_WORKSPACE }}
       run: |
         git submodule update --init --remote -- edagames-server
         git commit -am "Update EDAGames Server"
     - name: Update web
-      if: ${{ github.event_name == "update_django" }}
+      if: ${{ github.event_name == 'update_django' }}
       working-directory: ${{ env.GITHUB_WORKSPACE }}
       run: |
         git submodule update --init --remote -- edagames-django
