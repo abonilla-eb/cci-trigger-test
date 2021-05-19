@@ -30,13 +30,13 @@ jobs:
         git submodule update --init --remote -- edagames-server
         git commit -am "Update EDAGames Server"
     - name: Update web
-      if: ${{ github.event_name == 'update_django' }}
+      if: github.event_name == 'update_django'
       working-directory: ${{ env.GITHUB_WORKSPACE }}
       run: |
         git submodule update --init --remote -- edagames-django
         git commit -am "Update EDAGames Web"
     - name: Update game
-      if: ${{ github.event_name == "update_quoridor" }}
+      if: github.event_name == 'update_quoridor'
       working-directory: ${{ env.GITHUB_WORKSPACE }}
       run: |
         git submodule update --init --remote -- edagames-quoridor
